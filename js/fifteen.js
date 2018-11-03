@@ -49,3 +49,33 @@ function alignGrid(img){
     pleft = 300;
 }
 
+
+
+function shuffle(){
+    if(!sessionStart){
+        timer = setInterval(timekeeper,1000);
+        var i, l;
+        var lst2 = [];
+        for(let k = 0; k < 100; k++){
+            for(i = 0; i < puzzlePiece.length; i++){
+                if(validMove(puzzlePiece[i].style.left, puzzlePiece[i].style.top)){
+                    lst2.push([puzzlePiece[i],i]);
+                }
+            }
+            if(lst2.length != 0){
+                var ranNum = Math.floor(Math.random() * lst2.length);
+                var lst = swap(lst2[ranNum][0].style.left, lst2[ranNum][0].style.top);
+                lst2[ranNum][0].style.left = lst[0];
+                lst2[ranNum][0].style.top = lst[1];
+            }
+            else{
+                l--;
+            }
+            lst2 = [];
+        }
+        sessionStart = true;
+    }
+    else{
+        
+    }
+}
