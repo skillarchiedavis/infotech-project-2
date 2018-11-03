@@ -107,3 +107,11 @@ function btn() {
     nextBtn.addEventListener("click", nextImg);
     resetBtn.addEventListener("click", resetGame);
 }
+
+
+
+
+function movesCounter(){
+    move++;
+    document.getElementById("moves").innerHTML = "Moves: " + move;
+}
