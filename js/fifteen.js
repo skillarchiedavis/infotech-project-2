@@ -8,6 +8,30 @@ var shuffleBtn, puzzlePiece, puzzleArea;
 var ptop = 0, pleft = 0, counter = 0, min = 0, sec = 0, move = 0, timer;
 
 
+window.onload = function(){
+    
+    var timeKeeper = document.createElement("P");
+    var moves = document.createElement("P");
+    var gameSession = document.createElement("P");
+    
+    puzzleArea = document.getElementById("puzzlearea");
+   
+    gameSession.id = "gameSession";
+    document.getElementById("overall").insertBefore(gameSession,puzzleArea);
+    gameSession.style.position = "fixed";
+    gameSession.style.top = "20%";
+    gameSession.style.left = "1%";
+    
+	puzzlePiece = puzzleArea.getElementsByTagName("div");
+	shuffleBtn = document.getElementById("shufflebutton");
+	shuffleBtn.onclick = shuffle;
+   /* var imgs =["background.jpg", "Image-2.jpg", "Image-3.jpg", "image-4.jpg"];*/
+    alignGrid(imgs[counter]);
+    moves.style.padding = "10px";
+    btn();
+}
+
+
 function alignGrid(img){
     var i;
     for (i = 0; i < puzzlePiece.length; i++){
@@ -111,7 +135,4 @@ function btn() {
 
 
 
-function movesCounter(){
-    move++;
-    document.getElementById("moves").innerHTML = "Moves: " + move;
-}
+
