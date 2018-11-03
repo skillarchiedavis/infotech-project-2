@@ -5,7 +5,7 @@
 
 var sessionStart = false;
 var shuffleBtn, puzzlePiece, puzzleArea;
-var ptop = 0, pleft = 0, counter = 0, min = 0, sec = 0, move = 0, timer;
+var puzlTop = 0, puzlLeft = 0, counter = 0, min = 0, sec = 0, move = 0, timer;
 
 
 window.onload = function(){
@@ -25,7 +25,7 @@ window.onload = function(){
 	puzzlePiece = puzzleArea.getElementsByTagName("div");
 	shuffleBtn = document.getElementById("shufflebutton");
 	shuffleBtn.onclick = shuffle;
-   /* var imgs =["background.jpg", "Image-2.jpg", "Image-3.jpg", "image-4.jpg"];*/
+    var imgs =["background.jpg", "Image-2.jpg", "Image-3.jpg", "image-4.jpg"];
     alignGrid(imgs[counter]);
     moves.style.padding = "10px";
     btn();
@@ -36,22 +36,22 @@ function alignGrid(img){
     var i;
     for (i = 0; i < puzzlePiece.length; i++){
         puzzlePiece[i].className = "puzzlepiece";
-        puzzlePiece[i].style.top = ptop + "px";
-        puzzlePiece[i].style.left = pleft + "px";
+        puzzlePiece[i].style.top = puzlTop + "px";
+        puzzlePiece[i].style.left = puzlLeft + "px";
         puzzlePiece[i].webkitTransition = "all 1000ms ease";
         puzzlePiece[i].mozTransition = "all 1000ms ease";
         puzzlePiece[i].msTransition = "all 1000ms ease";
         puzzlePiece[i].oTransition = "all 1000ms ease";
         puzzlePiece[i].style.transition = "all 1000ms ease";
         puzzlePiece[i].style.backgroundImage =  "url('./img/"+img+"')";
-        pleft = pleft + 100;
-        if(pleft > 300){
-            ptop = ptop + 100;
-            pleft = 0;
+        puzlLeft = puzlLeft + 100;
+        if(puzlLeft > 300){
+            puzlTop = puzlTop + 100;
+            puzlLeft = 0;
         }
         puzzlePiece[i].style.backgroundPosition = "-" + puzzlePiece[i].style.left + " " + "-" + puzzlePiece[i].style.top;
         puzzlePiece[i].onmouseover = function(){
-            if(validMove(this.style.left, this.style.top)){
+            if(tryMove(this.style.left, this.style.top)){
                 this.classList.add("movablepiece");
                 this.style.cursor = "pointer";
             }
@@ -61,7 +61,7 @@ function alignGrid(img){
             this.style.cursor = "context-menu";
         }
         puzzlePiece[i].onmousedown = function(){
-            if(validMove(this.style.left, this.style.top)){
+            if(tryMove(this.style.left, this.style.top)){
                 movesCounter();
                 var lst = swap(this.style.left, this.style.top);
                 this.style.left = lst[0];
@@ -69,8 +69,32 @@ function alignGrid(img){
             }
         }
     }
-    ptop = 300;
-    pleft = 300;
+    puzlTop = 300;
+    puzlLeft = 300;
+}
+
+
+
+function tryMove(leftPx,topPx){
+    var move = false;
+    var x = parseInt(leftPx);
+    var y = parseInt(topPx);
+    if(x + 100 === puzlLeft  && y === puzlTop){
+        move = true;   
+    }
+    else if(x - 100 === puzlLeft && y === puzlTop){
+        move = true;
+    }
+    else if(y + 100 === puzlTop && x === puzlLeft){
+        move = true;
+    }
+    else if (y - 100 === puzlTop && x === puzlLeft){
+        move = true;
+    }
+    else {
+        move = false;
+    }
+    return move;
 }
 
 
@@ -82,7 +106,7 @@ function shuffle(){
         var lst2 = [];
         for(let k = 0; k < 100; k++){
             for(i = 0; i < puzzlePiece.length; i++){
-                if(validMove(puzzlePiece[i].style.left, puzzlePiece[i].style.top)){
+                if(tryMove(puzzlePiece[i].style.left, puzzlePiece[i].style.top)){
                     lst2.push([puzzlePiece[i],i]);
                 }
             }
