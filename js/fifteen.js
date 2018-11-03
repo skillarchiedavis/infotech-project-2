@@ -79,3 +79,31 @@ function shuffle(){
         
     }
 }
+
+
+function btn() {
+    var controls = document.getElementById("controls");
+    var nextBtn = document.createElement("BUTTON");
+    var resetBtn = document.createElement("BUTTON");
+    nextBtn.id = "next";
+    resetBtn.id = "reset";
+    nextBtn.appendChild(document.createTextNode("Next Img"));
+    resetBtn.appendChild(document.createTextNode("Reset Game"));
+    var btnList = [shuffleBtn, nextBtn, resetBtn];
+    for(var i = 0; i < btnList.length; i++){
+        btnList[i].style.fontFamily = "Verdana";
+        btnList[i].style.color = "#9400D3";
+        btnList[i].style.fontSize = "18px";
+        btnList[i].style.background = "#00ffff";
+        btnList[i].style.padding = "10px 20px";
+        btnList[i].style.textDecoration = "none";
+        btnList[i].style.border = "none";
+        btnList[i].style.margin = "2px";
+        btnList[i].style.cursor = "pointer";
+        if(i != 3){
+            controls.appendChild(btnList[i]);
+        }
+    }
+    nextBtn.addEventListener("click", nextImg);
+    resetBtn.addEventListener("click", resetGame);
+}
