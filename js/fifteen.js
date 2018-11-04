@@ -63,7 +63,7 @@ function alignGrid(img){
         puzzlePiece[i].onmousedown = function(){
             if(tryMove(this.style.left, this.style.top)){
                 movesCounter();
-                var lst = swap(this.style.left, this.style.top);
+                var lst = moveMent(this.style.left, this.style.top);
                 this.style.left = lst[0];
                 this.style.top = lst[1];
             }
@@ -97,7 +97,15 @@ function tryMove(leftPx,topPx){
     return move;
 }
 
-
+function moveMent(leftPx, topPx){
+    var temp = leftPx;
+    leftPx = pulzLeft + "px";
+    puzlLeft= parseInt(temp);
+    temp = topPx;
+    topPx = puzlTop +"px";
+    puzlTop = parseInt(temp);
+    return [leftPx, topPx];
+}
 
 function shuffle(){
     if(!sessionStart){
@@ -112,7 +120,7 @@ function shuffle(){
             }
             if(lst2.length != 0){
                 var ranNum = Math.floor(Math.random() * lst2.length);
-                var lst = swap(lst2[ranNum][0].style.left, lst2[ranNum][0].style.top);
+                var lst = moveMent(lst2[ranNum][0].style.left, lst2[ranNum][0].style.top);
                 lst2[ranNum][0].style.left = lst[0];
                 lst2[ranNum][0].style.top = lst[1];
             }
@@ -155,8 +163,3 @@ function btn() {
     nextBtn.addEventListener("click", nextImg);
     resetBtn.addEventListener("click", resetGame);
 }
-
-
-
-
-
