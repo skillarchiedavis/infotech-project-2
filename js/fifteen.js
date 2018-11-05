@@ -99,7 +99,7 @@ function tryMove(leftPx,topPx){
 
 function moveMent(leftPx, topPx){
     var temp = leftPx;
-    leftPx = pulzLeft + "px";
+    leftPx = puzlLeft + "px";
     puzlLeft= parseInt(temp);
     temp = topPx;
     topPx = puzlTop +"px";
@@ -143,18 +143,18 @@ function btn() {
     var resetBtn = document.createElement("BUTTON");
     nextBtn.id = "next";
     resetBtn.id = "reset";
-    nextBtn.appendChild(document.createTextNode("Next Img"));
+    nextBtn.appendChild(document.createTextNode("Next Image"));
     resetBtn.appendChild(document.createTextNode("Reset Game"));
     var btnList = [shuffleBtn, nextBtn, resetBtn];
     for(var i = 0; i < btnList.length; i++){
         btnList[i].style.fontFamily = "Verdana";
         btnList[i].style.color = "#9400D3";
-        btnList[i].style.fontSize = "18px";
+        btnList[i].style.fontSize = "14px";
         btnList[i].style.background = "#00ffff";
         btnList[i].style.padding = "10px 20px";
         btnList[i].style.textDecoration = "none";
         btnList[i].style.border = "none";
-        btnList[i].style.margin = "2px";
+        btnList[i].style.margin = "5px";
         btnList[i].style.cursor = "pointer";
         if(i != 3){
             controls.appendChild(btnList[i]);
@@ -163,3 +163,24 @@ function btn() {
     nextBtn.addEventListener("click", nextImg);
     resetBtn.addEventListener("click", resetGame);
 }
+
+
+
+function nextImg(){
+    if(!sessionStart){
+        puzlTop = 0;
+        puzlLeft = 0;
+        var imgs =["background.jpg", "Image-2.jpg", "Image-3.jpg", "image-4.jpg"];
+        if(counter == 3){
+            counter = 0;
+        }
+        else{
+			counter++;
+            
+        }
+		alignGrid(imgs[counter]);
+    }
+}
+
+
+
