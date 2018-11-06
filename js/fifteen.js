@@ -16,14 +16,19 @@ window.onload = function(){
     
     puzzleArea = document.getElementById("puzzlearea");
     
-	
-	
 	moves.id = "moves";
     moves.appendChild(document.createTextNode("Moves: "));
     document.getElementById("overall").insertBefore(moves,puzzleArea);
     moves.style.position = "fixed";
     moves.style.top = "15%";
     moves.style.left = "1%";
+	
+	timeKeeper.id = "timeKeeper";
+    timeKeeper.appendChild(document.createTextNode("Timer: 00:00"));
+    document.getElementById("overall").insertBefore(timeKeeper,puzzleArea);
+    timeKeeper.style.position = "fixed";
+    timeKeeper.style.top = "13%";
+    timeKeeper.style.left = "1%";
 	
     gameSession.id = "gameSession";
     document.getElementById("overall").insertBefore(gameSession,puzzleArea);
@@ -196,4 +201,27 @@ function movesCounter(){
     document.getElementById("moves").innerHTML = "Moves: " + move;
 }
 
+function timekeeper(){
+    var time;
+    if(sec < 59){
+        sec++;
+    }
+    else{
+        sec = 0;
+        min++;
+    }
+    if(min < 10){
+       time = "Timer: 0"+min+":"; 
+    }
+    else{
+        time = "Timer: "+min+":"; 
+    }
+    if(sec < 10){
+        time += "0"+sec;
+    }
+    else{
+        time += sec;
+    }
+    document.getElementById("timeKeeper").innerHTML = time;
+}
 
