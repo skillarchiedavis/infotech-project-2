@@ -15,7 +15,16 @@ window.onload = function(){
     var gameSession = document.createElement("P");
     
     puzzleArea = document.getElementById("puzzlearea");
-   
+    
+	
+	
+	moves.id = "moves";
+    moves.appendChild(document.createTextNode("Moves: "));
+    document.getElementById("overall").insertBefore(moves,puzzleArea);
+    moves.style.position = "fixed";
+    moves.style.top = "15%";
+    moves.style.left = "1%";
+	
     gameSession.id = "gameSession";
     document.getElementById("overall").insertBefore(gameSession,puzzleArea);
     gameSession.style.position = "fixed";
@@ -149,7 +158,7 @@ function btn() {
     for(var i = 0; i < btnList.length; i++){
         btnList[i].style.fontFamily = "Verdana";
         btnList[i].style.color = "#9400D3";
-        btnList[i].style.fontSize = "14px";
+        btnList[i].style.fontSize = "16px";
         btnList[i].style.background = "#00ffff";
         btnList[i].style.padding = "10px 20px";
         btnList[i].style.textDecoration = "none";
@@ -182,5 +191,9 @@ function nextImg(){
     }
 }
 
+function movesCounter(){
+    move++;
+    document.getElementById("moves").innerHTML = "Moves: " + move;
+}
 
 
