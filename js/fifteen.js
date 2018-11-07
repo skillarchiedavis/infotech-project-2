@@ -225,3 +225,18 @@ function timekeeper(){
     document.getElementById("timeKeeper").innerHTML = time;
 }
 
+
+function resetGame(){
+    var session = document.getElementById("gameSession");
+    puzlTop = 0;
+    puzlLeft = 0;
+	var imgs =["background.jpg", "Image-2.jpg", "Image-3.jpg", "image-4.jpg"];
+    alignGrid(imgs[counter]);
+    sessionStart = false;
+    clearInterval(timer);
+    document.getElementById("timeKeeper").innerHTML = "Timer: 00:00";
+    document.getElementById("moves").innerHTML = "Moves:";
+    min = 0;
+    sec = 0;
+	move = 0;
+}
