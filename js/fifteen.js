@@ -1,4 +1,5 @@
-
+/** The additional features are the moves counts and time alongside multiple backgroud..
+would like to be marked for the time and move count.*/
 
 
 
@@ -224,7 +225,6 @@ function timekeeper(){
     }
     document.getElementById("timeKeeper").innerHTML = time;
 }
-
 
 function resetGame(){
     var session = document.getElementById("gameSession");
